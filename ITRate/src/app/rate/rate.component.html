@@ -1,0 +1,56 @@
+<div class="container">
+   <div class="row">
+        <div class="col-lg-12">
+            <p-autoComplete placeholder="Пошук" [inputStyle]="{'width':'500px','font-size': '16px'}" (onSelect)="onSelect($event)" [suggestions]="companies" field="Name" (completeMethod)="search($event)">
+                    <ng-template let-brand pTemplate="companies">
+                        <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
+                            <span style="font-size:18px;">{{brand.Name}}</span>
+                                <span>{{ '( '+brand.CompanyAddress.Street + ' '+  brand.CompanyAddress.BuildingNumber+' )'}}</span>
+                        </div>
+                    </ng-template>
+                </p-autoComplete>
+                <!-- <button mat-raised-button style="background:#ecf0f1; margin-top:20px;" (click)="openDialog()">Додати</button>  -->
+        </div>
+   </div>
+   <div class="row" *ngIf="selectedCompany" style="margin-top:40px; font-size:15px;">
+        <div class="col-lg-12">
+                <div class="alert alert-default">
+                        <strong> {{selectedCompany?.Name}}</strong> (
+                        <i> м. </i>{{ selectedCompany?.CompanyAddress.City}}.
+                        <i> вул. </i>{{selectedCompany?.CompanyAddress.Street}}
+                        <i> буд. </i> {{selectedCompany?.CompanyAddress.BuildingNumber}})
+                        &nbsp;&nbsp;<p-rating [(ngModel)]="companyRating" readonly="true" stars="10" [cancel]="false"></p-rating>
+                        <i>{{companyRating}}/10</i>
+               </div>
+                    
+               
+               <mat-expansion-panel *ngIf="companyRateArray && companyRateArray.length>0">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Оцінити {{selectedCompany?.Name}}
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Пройдіть просте опитування яке сформулює вашу оцінку для {{selectedCompany?.Name}}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                
+                <div style="padding:20px 10px 10px 10px;">
+                    <ng-container  *ngFor="let mark of companyRateArray">
+                    <mat-form-field>
+                        <div style="padding-top:10px;">
+                                <p-rating [(ngModel)]="mark.Value"[cancel]="false" stars="10"></p-rating>
+                                <span class="mark-text">&nbsp;&nbsp;{{ mark.Mark.Name }}</span>
+                        </div>
+                        
+                    </mat-form-field>
+                </ng-container>
+                <button mat-raised-button [disabled]="!isValidRatingForm()" style="background:#ecf0f1; margin-top:20px;" (click)="rate()">Оцінити</button> 
+                </div> 
+               
+                
+            
+              </mat-expansion-panel>
+        </div>
+   </div>
+    
+</div>

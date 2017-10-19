@@ -9,4 +9,7 @@ export class CompanyRate {
     Rater:Rater;
     Value:number;
     Date:Date;
+    CompanyId:number;
+    MarkId: number;
+    RaterId:number;
 }

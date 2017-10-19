@@ -20,13 +20,12 @@ export class HomeComponent implements OnInit {
   msgs: Message[];
 
   constructor(private dataService: DataService) { }
-
  
   ngOnInit() {
      this.dataService.getCompaniesRatings().subscribe(request => {
      this.companiesRates =  asEnumerable(request).ToArray();
      this.initChart(false);
-    }).unsubscribe;
+    });
 
   }
   
@@ -34,9 +33,12 @@ export class HomeComponent implements OnInit {
     this.msgs = [];
     this.msgs.push({severity: 'info', summary: 'Data Selected', 'detail': this.data.datasets[event.element._datasetIndex].data[event.element._index]});
   }
+  
   initChart(isMergeLocations) {
     //let companies = isMergeLocations? this.mergeRatingsByLocations(this.companiesRates): this.companiesRates;
 
+    //var t = asEnumerable(this.companiesRates).GroupBy(x=>x.Company.Name).ToArray();
+    
     
         let datasets = [];
         let labels = asEnumerable(this.companiesRates).GroupBy(x=>x.Rater.Id)
@@ -50,7 +52,8 @@ export class HomeComponent implements OnInit {
               return values;}).ToArray();
           let company = companyElement[0].Company;
           datasets.push({
-            label: company.Name.concat(' (').concat(company.CompanyAddress.Street).concat(' ').concat(company.CompanyAddress.BuildingNumber).concat(')'),
+            label: company.Name.concat(' (').concat(company.CompanyAddress.Street).concat(' ')
+            .concat(company.CompanyAddress.BuildingNumber).concat(')'),
             data: values,
             fill: false,
             borderColor: "#"+((1<<24)*Math.random()|0).toString(16)
@@ -67,7 +70,7 @@ export class HomeComponent implements OnInit {
 
 
     var t = asEnumerable(this.companiesRates).GroupBy(x=>x.Company.Name).ToArray();
-    debugger;
+ 
     
   }
 

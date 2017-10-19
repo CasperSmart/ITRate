@@ -1,3 +1,48 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+.mat-expansion-panel-header-description, .mat-expansion-panel-header-title
+{
+    flex-grow: 0.5 !important;
+}
+.mat-expansion-panel-header{
+    font-size: 16px;
+    color: #777676 !important; 
+}
+
+.mat-expansion-panel{
+    border: 1px solid #E7E7E7;
+    box-shadow: none !important;
+}
+
+.mat-expansion-panel-header{
+    background: #F8F8F8;
+}
+
+.ui-rating{
+    display: inline;
+}
+
+.ui-rating a{
+   color:  #FEDC33 !important;
+   font-size: 20px;
+   text-decoration: none !important;
+}
+
+.mark-text{
+    font-size: 16px;
+    color: #777676; 
+}
+
+.alert-default{
+    background-color: #F8F8F8;
+    border-color: #E7E7E7;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.mat-raised-button{
+    box-shadow: none !important;
+}

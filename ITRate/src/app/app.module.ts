@@ -14,6 +14,8 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { RateComponent } from './rate/rate.component';
+import { AddCompanyDialog } from './dialogs/add.company/add.company.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HeaderComponent,
     HomeComponent,
     AboutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    RateComponent,
+    AddCompanyDialog,
   ],
   imports: [
     BrowserModule,
