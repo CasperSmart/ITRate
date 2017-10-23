@@ -7,6 +7,9 @@ import { asEnumerable } from 'linq-es2015';
 import * as moment from 'moment';
 import {ChartModule} from 'primeng/primeng';
 import {SelectItem,Message,CheckboxModule} from 'primeng/primeng';
+import {DataSource} from '@angular/cdk/collections';
+import {Company} from '../models/company'
+import 'rxjs/add/observable/of';
 
 
 @Component({
@@ -15,18 +18,22 @@ import {SelectItem,Message,CheckboxModule} from 'primeng/primeng';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public companiesRates: CompanyRate[];
+  public companiesRates: CompanyRate[]; 
+  public ratings: CompanyRate[];
   data: any;
   msgs: Message[];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+    this.dataService.getRatings().subscribe(request => {
+     this.ratings =  asEnumerable(request).OrderByDescending(x=>x.Value).ToArray();
+    });
+   }
  
   ngOnInit() {
      this.dataService.getCompaniesRatings().subscribe(request => {
-     this.companiesRates =  asEnumerable(request).ToArray();
+     this.companiesRates =  request
      this.initChart(false);
     });
-
   }
   
   selectData(event) {
@@ -36,14 +43,9 @@ export class HomeComponent implements OnInit {
   
   initChart(isMergeLocations) {
     //let companies = isMergeLocations? this.mergeRatingsByLocations(this.companiesRates): this.companiesRates;
-
-    //var t = asEnumerable(this.companiesRates).GroupBy(x=>x.Company.Name).ToArray();
-    
-    
         let datasets = [];
         let labels = asEnumerable(this.companiesRates).GroupBy(x=>x.Rater.Id)
         .Select(group=> moment((group as CompanyRate[])[0].Date).format('DD/MM/YYYY')).ToArray();
-
         asEnumerable(this.companiesRates).GroupBy(x=>x.Company.Id).ToArray().forEach(element => {
           let companyElement = element as CompanyRate[];
           let values = asEnumerable(companyElement).GroupBy(x=>x.Rater.Id).Select(group =>{
@@ -67,17 +69,11 @@ export class HomeComponent implements OnInit {
 
   onChangeMergeLocations(value){
     this.initChart(value);
-
-
-    var t = asEnumerable(this.companiesRates).GroupBy(x=>x.Company.Name).ToArray();
- 
-    
   }
 
   mergeRatingsByLocations(data: CompanyRate[]){
-   return asEnumerable(data).GroupBy(x=>x.Company.Name).ToArray();//group =>{
-      //let raterValues = asEnumerable(group as CompanyRate[]).Select(r=> r.Value);
-      //let values =  raterValues.Sum()/raterValues.Count();
-      //return values;}).ToArray();
+    return asEnumerable(data).GroupBy(x=>x.Company.Name).ToArray();
   }
 }
+
+

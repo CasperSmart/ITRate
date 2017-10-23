@@ -1,0 +1,13 @@
+<div class="container">
+
+  <div class="row">
+<h3>Критерії</h3>
+<ng-container *ngFor="let m of marks">
+    <button mat-raised-button  style="background:#ecf0f1; margin-top:20px;" (click)="onSelectMark(m)">{{m.Name}}</button> 
+</ng-container>  
+  </div>
+  <div class="row" *ngIf="selectedMark" style="margin-top:20px;">
+      <h3>Критерій: <span style="color: #696969;">{{selectedMark?.Name}}</span></h3>
+      <p-chart type="bar" [data]="marksChartData" [options]="options"></p-chart>
+  </div>
+</div>

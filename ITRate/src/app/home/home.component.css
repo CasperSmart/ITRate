@@ -1,0 +1,6 @@
+.company-row{
+    cursor: pointer; 
+}
+.company-row:hover {
+    background-color: whitesmoke;
+}

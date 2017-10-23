@@ -9,7 +9,6 @@
                         </div>
                     </ng-template>
                 </p-autoComplete>
-                <!-- <button mat-raised-button style="background:#ecf0f1; margin-top:20px;" (click)="openDialog()">Додати</button>  -->
         </div>
    </div>
    <div class="row" *ngIf="selectedCompany" style="margin-top:40px; font-size:15px;">
@@ -24,7 +23,7 @@
                </div>
                     
                
-               <mat-expansion-panel *ngIf="companyRateArray && companyRateArray.length>0">
+               <mat-expansion-panel *ngIf="companyRateArray && companyRateArray.length > 0">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     Оцінити {{selectedCompany?.Name}}
@@ -36,13 +35,10 @@
                 
                 <div style="padding:20px 10px 10px 10px;">
                     <ng-container  *ngFor="let mark of companyRateArray">
-                    <mat-form-field>
                         <div style="padding-top:10px;">
                                 <p-rating [(ngModel)]="mark.Value"[cancel]="false" stars="10"></p-rating>
                                 <span class="mark-text">&nbsp;&nbsp;{{ mark.Mark.Name }}</span>
                         </div>
-                        
-                    </mat-form-field>
                 </ng-container>
                 <button mat-raised-button [disabled]="!isValidRatingForm()" style="background:#ecf0f1; margin-top:20px;" (click)="rate()">Оцінити</button> 
                 </div> 

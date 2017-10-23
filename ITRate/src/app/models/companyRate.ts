@@ -8,7 +8,7 @@ export class CompanyRate {
     Mark:Mark;
     Rater:Rater;
     Value:number;
-    Date:Date;
+    Date:string;
     CompanyId:number;
     MarkId: number;
     RaterId:number;

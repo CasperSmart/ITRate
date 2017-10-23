@@ -1,4 +1,30 @@
-<p-checkbox (onChange)="onChangeMergeLocations($event)" binary="true"></p-checkbox><small>Об'єднати по локаціях</small>
+<!-- <p-checkbox (onChange)="onChangeMergeLocations($event)" binary="true"></p-checkbox><small>Об'єднати по локаціях</small> -->
+
+
+<h3>Топ</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Назва</th>
+      <th>Адреса</th>
+      <th>Рейтинг</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of ratings" class="company-row"  [routerLink]="['/company', item.Company.Id]">
+      <td>{{item.Company.Name}}</td>
+      <td>
+        <i> м. </i>{{ item.Company.CompanyAddress.City}}.
+        <i> вул. </i>{{item.Company.CompanyAddress.Street}}
+        <i> буд. </i> {{item.Company.CompanyAddress.BuildingNumber}}
+      </td>
+      <td>
+        <p-rating [(ngModel)]="item.Value" readonly="true" stars="10" [cancel]="false"></p-rating>
+        <i>{{item.Value | number:'1.1-1'}} /10</i>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <div class="p-chart-wrapper">
   <p-chart type="line" [data]="data" (onDataSelect)="selectData($event)"></p-chart>

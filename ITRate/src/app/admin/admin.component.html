@@ -1,0 +1,62 @@
+<div class="component">
+<div class="row">
+  <h3>Питання</h3>
+
+  <form [formGroup]="markForm" (submit)="addMark()" novalidate>
+    <mat-form-field>
+      <input matInput  formControlName="mark" required>
+    </mat-form-field>
+    <button mat-raised-button [disabled]="!isValidForm()" style="background:#ecf0f1; margin-top:20px;">Додати критерій</button> 
+  </form>
+
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="marksDataSource">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="Id">
+        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Id}} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Name}} </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedMarkColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedMarkColumns;"></mat-row>
+    </mat-table>
+  </div>
+ 
+</div>
+<!-- <div class="row">
+  <h3>Компанії</h3>
+
+  <form [formGroup]="companyForm" (submit)="addCompany()" novalidate>
+    <mat-form-field>
+      <input matInput  formControlName="name" required>
+    </mat-form-field>
+    <button mat-raised-button [disabled]="!isValidCompanyForm()" style="background:#ecf0f1; margin-top:20px;">Додати компанію</button> 
+  </form>
+
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="companiesDataSource">
+  
+      <ng-container matColumnDef="Id">
+        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Id}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Name}} </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedMarkColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedMarkColumns;"></mat-row>
+    </mat-table>
+  </div>
+ 
+</div> -->
+</div>
