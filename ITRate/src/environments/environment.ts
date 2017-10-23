@@ -4,7 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 import {HttpHeaders} from '@angular/common/http';
 
-const BASE_API_URL = 'http://localhost:12949/api/'; //'http://localhost:12949/api/';  'http://itrate.somee.com/api/'
+const BASE_API_URL = 'http://itrate.somee.com/api/'; //'http://localhost:12949/api/';  'http://itrate.somee.com/api/'
 const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 export const environment: any = {
   production: false,
