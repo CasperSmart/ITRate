@@ -1165,7 +1165,7 @@ SharedModule = __decorate([
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
-var BASE_API_URL = 'http://localhost:12949/api/'; //'http://localhost:12949/api/';  'http://itrate.somee.com/api/'
+var BASE_API_URL = 'http://itrate.somee.com/api/'; //'http://localhost:12949/api/';  'http://itrate.somee.com/api/'
 var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/x-www-form-urlencoded');
 var environment = {
     production: false,
